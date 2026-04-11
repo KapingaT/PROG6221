@@ -1,0 +1,14 @@
+C:\Users\HP\source\repos\icetask1\icetask1\bin\Debug\net10.0\icetask1.exe
+C:\Users\HP\source\repos\icetask1\icetask1\bin\Debug\net10.0\icetask1.deps.json
+C:\Users\HP\source\repos\icetask1\icetask1\bin\Debug\net10.0\icetask1.runtimeconfig.json
+C:\Users\HP\source\repos\icetask1\icetask1\bin\Debug\net10.0\icetask1.dll
+C:\Users\HP\source\repos\icetask1\icetask1\bin\Debug\net10.0\icetask1.pdb
+C:\Users\HP\source\repos\icetask1\icetask1\obj\Debug\net10.0\icetask1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\source\repos\icetask1\icetask1\obj\Debug\net10.0\icetask1.AssemblyInfoInputs.cache
+C:\Users\HP\source\repos\icetask1\icetask1\obj\Debug\net10.0\icetask1.AssemblyInfo.cs
+C:\Users\HP\source\repos\icetask1\icetask1\obj\Debug\net10.0\icetask1.csproj.CoreCompileInputs.cache
+C:\Users\HP\source\repos\icetask1\icetask1\obj\Debug\net10.0\icetask1.dll
+C:\Users\HP\source\repos\icetask1\icetask1\obj\Debug\net10.0\refint\icetask1.dll
+C:\Users\HP\source\repos\icetask1\icetask1\obj\Debug\net10.0\icetask1.pdb
+C:\Users\HP\source\repos\icetask1\icetask1\obj\Debug\net10.0\icetask1.genruntimeconfig.cache
+C:\Users\HP\source\repos\icetask1\icetask1\obj\Debug\net10.0\ref\icetask1.dll
