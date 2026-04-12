@@ -1,6 +1,7 @@
 
 
 ABOUT THE CHATBOX
+
 This is a simple C# chatbot that runs in the console. It lets a user enter their name, 
 chat with the system, and get replies based on keywords. The project shows basic programming skills like using methods,
 loops, and decision-making.
