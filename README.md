@@ -19,7 +19,7 @@ loops, and decision-making.
 3. Chat starts
 4. User types a message
 5. Bot replies based on keywords
-6. Chat ends when user types "exit"
+6. Chat ends when user types "exit" 
    
  EXAMPLE
 Enter your name: John  
