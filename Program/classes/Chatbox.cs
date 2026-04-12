@@ -20,10 +20,10 @@ namespace poepart1.Program.classes
             Console.Write("\nEnter your name: ");
             userName = Console.ReadLine();
 
-            // ✔ Improved error message
+            //  a loop condition to handle the error if the user hasnt entered thir name it asks  the users to enter their name 
             while (string.IsNullOrWhiteSpace(userName))
             {
-                Console.ForegroundColor = ConsoleColor.Red;
+                Console.ForegroundColor = ConsoleColor.Red; // sets the text colour to red 
                 Console.WriteLine(" Name cannot be empty. Please try again.");
                 Console.ResetColor();
 
@@ -31,7 +31,7 @@ namespace poepart1.Program.classes
                 userName = Console.ReadLine();
             }
 
-            // ✔ Welcome message
+            //  Welcome message how it will appear to the users 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"\nWelcome, {userName}!");
             Console.WriteLine("Type 'exit' to quit the chat.\n");
@@ -42,7 +42,7 @@ namespace poepart1.Program.classes
         }
 
         private void StartChat()
-        {// method that explains what exactly chat is doing 
+        {// method that explains what exactly chat should do 
             string message;
 
             do
@@ -53,7 +53,7 @@ namespace poepart1.Program.classes
 
                 message = Console.ReadLine();
 
-                // ✔ Connect to response system
+                //  Connect to response system
                 string response = GenerateResponse(message);
 
                 Console.ForegroundColor = ConsoleColor.Magenta;
@@ -68,9 +68,12 @@ namespace poepart1.Program.classes
         }
 
         private string GenerateResponse(string input)
+        //✔ This method decides what the bot should reply based on what they ask the bot to do 
         {
-            input = input.ToLower();
+            input = input.ToLower();//makeseverything in small letters so its easier to understand 
 
+            // this generals a response to the user based what they enter innto the prompt that meet these conditions when th eerson greets they 
+            //have to enter one of these following words so the bot can know how to respond 
             if (input.Contains("hello") || input.Contains("hi")||input.Contains("hey"))
             {
                 return "Hey,there how can i help";
@@ -94,7 +97,7 @@ namespace poepart1.Program.classes
             }
             else
             {
-                return "I don't understand that yet ";
+                return "I don't understand .try asking about cyber security  ";
             }
         }
     }
