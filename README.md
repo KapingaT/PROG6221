@@ -12,7 +12,7 @@ loops, and decision-making.
 * Allows continuous chatting
 * Gives responses based on keywords
 * Type "exit" to end the chat
-* Uses colours to improve the display
+* Uses colours to improve the display 
   
  HOW IT WORKS
 1. User enters their name
