@@ -23,6 +23,7 @@ loops, and decision-making.
 6. Chat ends when user types "exit" 
    
  EXAMPLE
+ 
 Enter your name: John  
 Welcome, John!  
 John: hello  
