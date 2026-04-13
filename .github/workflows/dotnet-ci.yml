@@ -1,0 +1,74 @@
+name: .NET CI Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Debug - Show repository structure
+      run: |
+        Write-Host "=== Repository Contents ==="
+        Get-ChildItem -Path ${{ github.workspace }} -Recurse | Select-Object FullName, Length
+        Write-Host "`n=== Looking for .csproj files ==="
+        Get-ChildItem -Path ${{ github.workspace }} -Filter "*.csproj" -Recurse | ForEach-Object {
+          Write-Host "Found: $($_.FullName)"
+          Write-Host "Directory: $($_.DirectoryName)"
+        }
+    
+    - name: Setup .NET 10.0
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+        include-prerelease: true
+    
+    - name: Find and restore all projects
+      run: |
+        $projects = Get-ChildItem -Path ${{ github.workspace }} -Filter "*.csproj" -Recurse
+        if ($projects.Count -eq 0) {
+          Write-Host "No .csproj files found in repository!"
+          Write-Host "Contents of workspace:"
+          Get-ChildItem -Path ${{ github.workspace }}
+          exit 1
+        }
+        
+        foreach ($project in $projects) {
+          Write-Host "Restoring: $($project.Name)"
+          dotnet restore $project.FullName
+        }
+      shell: pwsh
+    
+    - name: Build all projects
+      run: |
+        $projects = Get-ChildItem -Path ${{ github.workspace }} -Filter "*.csproj" -Recurse
+        foreach ($project in $projects) {
+          Write-Host "Building: $($project.Name)"
+          dotnet build $project.FullName --configuration Release --no-restore
+        }
+      shell: pwsh
+    
+    - name: Publish projects
+      run: |
+        $projects = Get-ChildItem -Path ${{ github.workspace }} -Filter "*.csproj" -Recurse
+        foreach ($project in $projects) {
+          $outputDir = "./publish/$($project.BaseName)"
+          Write-Host "Publishing $($project.Name) to $outputDir"
+          dotnet publish $project.FullName --configuration Release --output $outputDir --self-contained false --no-restore
+        }
+      shell: pwsh
+    
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: all-builds
+        path: ./publish/
+        retention-days: 7
