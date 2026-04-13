@@ -34,3 +34,7 @@ Bot: Goodbye!
  THE LINK TO THE YOUTUBE VIDEO 
  https://youtu.be/vMwc6QtHtws
  
+ <img width="1366" height="728" alt="finalthing" src="https://github.com/user-attachments/assets/ea0c6b30-b0fa-4f6d-85ee-51d55a4d59cc" />
+
+ 
+ 
