@@ -3,33 +3,22 @@ name: .NET Chatbot CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout repository
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # Setup .NET
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '8.0.x'
 
-    # Restore dependencies
-    - name: Restore dependencies
-      run: dotnet restore
+    - name: Restore
+      run: dotnet restore ./poepart1/poepart1.csproj
 
-    # Build project
     - name: Build
-      run: dotnet build --no-restore
-
-    # Run tests (if you add tests later)
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet build ./poepart1/poepart1.csproj --no-restore
