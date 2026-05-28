@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/voicegreeting/">
+    <File Path="../../../Music/WhatsApp Audio 2026-04-07 at 19.30.19 voice chatbox.wav" />
+    <File Path="ProgP2 chatbox/WhatsApp Audio 2026-04-07 at 19.30.19 voice chatbox.wav" />
+  </Folder>
+  <Project Path="ProgP2 chatbox/ProgP2 chatbox.csproj" />
+</Solution>
