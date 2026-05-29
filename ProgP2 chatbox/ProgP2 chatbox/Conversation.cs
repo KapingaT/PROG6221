@@ -291,7 +291,7 @@ namespace ProgP2_chatbox
             }
 
             // Identity Theft
-            if (input.Contains("identity theft"))
+            if (input.Contains("identity theft") || input.Contains("identity") || input.Contains("theft"))
             {
                 return "Protect against identity theft: Freeze your credit, monitor accounts, use strong passwords, and never share personal info online.";
             }

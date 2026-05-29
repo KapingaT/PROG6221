@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Media;
 using System.Text;
 
@@ -17,7 +18,10 @@ namespace poepart1.Program.classes
         {// inside we have the lace where we will find the voice recording that greets the users the direct path 
             try
             {
-             
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "voicegreeting", "audio.wav");
+                //A built-in C# class used to play .wav audio files
+                SoundPlayer player = new SoundPlayer(path);
+                player.Play();
             }
             catch
             {

@@ -1,39 +1,56 @@
 ﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="CybersecurityChatbotWPF.MainWindow"
-        Title="Cybersecurity Awareness Chatbot" 
-        Height="900" Width="1200"
-        WindowStartupLocation="CenterScreen"
-        Background="#B0D4E8">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    mc:Ignorable="d" x:Class="CyberPalAssistantWPF.MainWindow"
+    Title="Cybersecurity Bot - Your Digital Assistant" 
+    Height="1044" Width="891"
+    WindowStartupLocation="CenterScreen"
+    Background="#1a1a2e"
+    WindowStyle="None"
+    AllowsTransparency="True">
 
     <Window.Resources>
         <!-- Chat bubble styles -->
         <Style x:Key="UserBubbleStyle" TargetType="{x:Type Border}">
             <Setter Property="Background" Value="#4A90D9"/>
-            <Setter Property="CornerRadius" Value="15"/>
-            <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="Margin" Value="5,2,50,2"/>
-            <Setter Property="MaxWidth" Value="550"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="Margin" Value="5,2,30,2"/>
+            <Setter Property="MaxWidth" Value="350"/>
         </Style>
 
         <Style x:Key="BotBubbleStyle" TargetType="{x:Type Border}">
             <Setter Property="Background" Value="#2D2D3F"/>
-            <Setter Property="CornerRadius" Value="15"/>
-            <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="Margin" Value="50,2,5,2"/>
-            <Setter Property="MaxWidth" Value="550"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="Margin" Value="30,2,5,2"/>
+            <Setter Property="MaxWidth" Value="350"/>
         </Style>
 
+        <!-- Button Style with Border for rounded corners -->
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#4A90D9"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="Margin" Value="3"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="6" 
+                                BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#5BA0E9"/>
@@ -41,206 +58,300 @@
             </Style.Triggers>
         </Style>
 
+        <!-- Topic Button Style with Border for rounded corners -->
         <Style x:Key="TopicButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#3D3D50"/>
-            <Setter Property="Padding" Value="12,6"/>
+            <Setter Property="Padding" Value="8,4"/>
+            <Setter Property="FontSize" Value="10"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="15" 
+                                BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5BA0E9"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- TextBox Style with Border for rounded corners -->
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="Background" Value="#0f3460"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#4A90D9"/>
+            <Setter Property="BorderThickness" Value="1.5"/>
             <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Padding" Value="8"/>
+            <Setter Property="MinHeight" Value="35"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="2"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- ListBox Style with scroll viewer -->
+        <Style TargetType="{x:Type ListBox}">
+            <Setter Property="Background" Value="#0f3460"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                            <ScrollViewer 
+                                HorizontalScrollBarVisibility="Disabled" 
+                                VerticalScrollBarVisibility="Auto">
+                                <ItemsPresenter/>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style for Response TextBlock -->
+        <Style x:Key="ResponseTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Foreground" Value="#E0E0E0"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
         </Style>
     </Window.Resources>
 
-    <Grid Margin="25,15,5,15">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
+    <Grid>
+        <Border Background="#1a1a2e" CornerRadius="10" Margin="5,33,38,10">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-        <!-- SUPER LARGE ASCII ART HEADER -->
-        <Border Grid.Row="0" Background="#2D2D3F" CornerRadius="10" Padding="15" Margin="10,-26,-10,41">
-            <ScrollViewer MaxHeight="280" VerticalScrollBarVisibility="Auto">
-                <StackPanel>
-                    <TextBlock FontFamily="Consolas" Foreground="#4A90D9" FontSize="12"
-               Text="╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗"
-               TextAlignment="Center"/>
+                <!-- Close Button -->
+                <Button x:Name="CloseButton" Grid.Row="0" Content="X" 
+                        HorizontalAlignment="Right" Width="25" Height="25"
+                        Background="Transparent" Foreground="#888"
+                        Click="CloseButton_Click" Margin="0,-5,0,5"
+                        FontSize="12" FontWeight="Bold"/>
 
-                    <TextBlock FontFamily="Consolas" Foreground="#FF6B6B" FontSize="18" FontWeight="Bold"
-               Text="║                                      W E L C O M E   T O   T H E                                               ║"
-               TextAlignment="Center"/>
+                <!-- CYBERPAL ASCII ART HEADER -->
+                <Border Grid.Row="1" Background="#16213e" CornerRadius="8" Padding="8" Margin="0,0,0,10">
+                    <StackPanel>
+                        <TextBlock FontFamily="Consolas" Foreground="#4A90D9" FontSize="10" FontWeight="Bold"
+                           Text=" ██████╗██╗   ██╗██████╗ ███████╗██████╗ ██████╗  █████╗ ██╗"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#4A90D9" FontSize="10" FontWeight="Bold"
+                           Text="██╔════╝╚██╗ ██╔╝██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔══██╗██╗"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#4A90D9" FontSize="10" FontWeight="Bold"
+                           Text="██║      ╚████╔╝ ██████╔╝█████╗  ██████╔╝██████╔╝███████║██║"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#4A90D9" FontSize="10" FontWeight="Bold"
+                           Text="██║       ╚██╔╝  ██╔══██╗██╔══╝  ██╔══██╗██╔══██╗██╔══██║██║"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#4A90D9" FontSize="10" FontWeight="Bold"
+                           Text="╚██████╗   ██║   ██████╔╝███████╗██║  ██║██║  ██║██║  ██║███████╗"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#4A90D9" FontSize="10" FontWeight="Bold"
+                           Text=" ╚═════╝   ╚═╝   ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝"
+                           TextAlignment="Center"/>
 
-                    <TextBlock FontFamily="Consolas" Foreground="#FF6B6B" FontSize="20" FontWeight="Bold"
-               Text="║                           C Y B E R S E C U R I T Y   A W A R E N E S S   B O T                                 ║"
-               TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#FF6B6B" FontSize="10" FontWeight="Bold" Margin="0,5,0,0"
+                           Text="              YOUR INTELLIGENT DIGITAL ASSISTANT"
+                           TextAlignment="Center"/>
 
-                    <TextBlock FontFamily="Consolas" Foreground="#4A90D9" FontSize="12"
-               Text="╠════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣"
-               TextAlignment="Center"/>
+                        <Border Height="1" Background="#4A90D9" Margin="30,8,30,8" CornerRadius="1"/>
 
-                    <!-- Large Shield Art -->
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                    ________________________________________________                                    ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                   /                                                  \                                   ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                  /                                                    \                                  ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                 |                                                      |                                 ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                 |        ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄          |                                 ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                 |       █                                █         |                                 ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                 |       █     S E C U R I T Y   B O T     █         |                                 ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                 |       █                                █         |                                 ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                 |       █     Y O U R   S H I E L D       █         |                                 ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                 |       █                                █         |                                 ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                 |       █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█         |                                 ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                 |                                                      |                                 ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                  \                                                    /                                  ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                   \                                                  /                                   ║"
-               TextAlignment="Left"/>
-                    <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="11"
-               Text="║                                                    ________________________________________________                                    ║"
-               TextAlignment="Left"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="8"
+                           Text="                   ┌─────────────┐"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="8"
+                           Text="                   │  ╭─╮   ╭─╮  │"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="8"
+                           Text="                   │  │ │   │ │  │"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="8"
+                           Text="                   │  │ ╰───╯ │  │"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="8"
+                           Text="                   │  │  ● ●  │  │"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="8"
+                           Text="                   │  │   ⌄   │  │"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="8"
+                           Text="                   │  ╰──┬──╯  │"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="8"
+                           Text="                   │     │     │"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="8"
+                           Text="                   │   ══╧══   │"
+                           TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#5BA0E9" FontSize="8"
+                           Text="                   └─────────────┘"
+                           TextAlignment="Center"/>
 
-                    <TextBlock FontFamily="Consolas" Foreground="#4A90D9" FontSize="12" Margin="0,10,0,0"
-               Text="╠════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╣"
-               TextAlignment="Center"/>
+                        <Border Height="1" Background="#4A90D9" Margin="30,8,30,8" CornerRadius="1"/>
 
-                    <TextBlock FontFamily="Consolas" Foreground="#A0A0A0" FontSize="14" FontWeight="Bold"
-               Text="║                                     P R O T E C T I N G   Y O U   T O D A Y   A N D   T O M O R R O W                                        ║"
-               TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#87CEEB" FontSize="10" FontWeight="Bold"
+                           Text="                 Available 24/7 - Ready to Assist"
+                           TextAlignment="Center"/>
 
-                    <TextBlock FontFamily="Consolas" Foreground="#87CEEB" FontSize="12"
-               Text="║                                   Your Digital Guardian - Available 24/7 to Keep You Safe                                                       ║"
-               TextAlignment="Center"/>
+                        <TextBlock FontFamily="Consolas" Foreground="#A0A0A0" FontSize="9" Margin="0,5,0,0"
+                           Text="                         ASK ME ANYTHING"
+                           TextAlignment="Center"/>
+                    </StackPanel>
+                </Border>
 
-                    <TextBlock FontFamily="Consolas" Foreground="#4A90D9" FontSize="12"
-               Text="╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝"
-               TextAlignment="Center"/>
+                <!-- Name Input Panel -->
+                <Border x:Name="NameInputPanel" Grid.Row="2" Background="#16213e" CornerRadius="8" 
+                        Padding="10" Margin="0,0,0,10" Visibility="Visible">
+                    <StackPanel>
+                        <TextBlock Text="Welcome to CyberPal! Please tell me your name:" 
+                                   Foreground="White" FontSize="12" Margin="0,0,0,10"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="NameTextBox" Grid.Column="0" MinHeight="35"/>
+                            <Button x:Name="SubmitNameButton" Grid.Column="1" Content="START" 
+                                    Width="80" Click="SubmitNameButton_Click"/>
+                        </Grid>
+                    </StackPanel>
+                </Border>
 
-                    <TextBlock FontFamily="Consolas" Foreground="#FFD700" FontSize="11" FontWeight="Bold" Margin="0,10,0,0"
-               Text="                                          S T A Y   V I G I L A N T   -   S T A Y   I N F O R M E D   -   S T A Y   P R O T E C T E D                                 "
-               TextAlignment="Center"/>
-                </StackPanel>
-            </ScrollViewer>
-        </Border>
-        <!-- Name Input Panel -->
-        <Border x:Name="NameInputPanel" Grid.Row="1" Background="#2D2D3F" CornerRadius="10" 
-                Padding="20" Margin="0,0,0,35" Visibility="Visible">
-            <StackPanel>
-                <TextBlock Text="Welcome! Please tell me your name:" Foreground="White" 
-                           FontSize="16" Margin="0,0,0,15"/>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox x:Name="NameTextBox" Grid.Column="0" Background="#1E1E2E" 
-                             Foreground="White" BorderBrush="#4A90D9" BorderThickness="3"
-                             FontSize="14" Padding="12" MinHeight="45"/>
-                    <Button x:Name="SubmitNameButton" Grid.Column="1" Content="Start Chat" 
-                            Width="120" Click="SubmitNameButton_Click"/>
-                </Grid>
-            </StackPanel>
-        </Border>
+                <!-- Response Display Box -->
+                <Border Grid.Row="3" Background="#16213e" CornerRadius="8" Padding="10" Margin="0,0,0,10">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-        <!-- Chat Display Area -->
-        <ListBox x:Name="ChatListBox" Grid.Row="1" Background="#1E1E2E" 
-                 BorderThickness="0" Margin="0,159,0,5" ScrollViewer.HorizontalScrollBarVisibility="Disabled" d:ItemsSource="{d:SampleData ItemCount=5}" Grid.RowSpan="2" SelectionChanged="ChatListBox_SelectionChanged" RenderTransformOrigin="0.5,0.5">
-            <ListBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="-0.595"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="0.74"/>
-                </TransformGroup>
-            </ListBox.RenderTransform>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal" 
-                                HorizontalAlignment="{Binding Alignment}" 
-                                Margin="0,5">
-                        <Border Style="{Binding BubbleStyle}">
-                            <StackPanel>
-                                <TextBlock Text="{Binding Sender}" Foreground="#888888" 
-                                           FontSize="11" Margin="5,0,5,3"/>
-                                <TextBlock Text="{Binding Text}" Foreground="White" 
-                                           FontSize="14" TextWrapping="Wrap"/>
-                                <TextBlock Text="{Binding Timestamp}" Foreground="#666666" 
-                                           FontSize="9" Margin="5,3,5,0" HorizontalAlignment="Right"/>
+                        <Border Grid.Row="0" Background="#4A90D9" CornerRadius="6" Padding="6" Margin="0,0,0,8">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <TextBlock Text="CYBERPAL RESPONSE" Foreground="White" 
+                                           FontSize="11" FontWeight="Bold" Margin="0,0,8,0"/>
+                                <TextBlock x:Name="ResponseTimestamp" Text="" Foreground="#CCCCCC" 
+                                           FontSize="9" VerticalAlignment="Center"/>
                             </StackPanel>
                         </Border>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
 
-        <!-- Input Area -->
-        <Border Grid.Row="3" Background="#2D2D3F" CornerRadius="10" Padding="12" Margin="0,15,0,0">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+                        <Border Grid.Row="1" Background="#0f3460" CornerRadius="6" Padding="10" 
+                                BorderBrush="#4A90D9" BorderThickness="1.5">
+                            <ScrollViewer MaxHeight="100" VerticalScrollBarVisibility="Auto">
+                                <TextBlock x:Name="ResponseDisplayBox" 
+                                           Style="{StaticResource ResponseTextBlockStyle}"
+                                           Text="Your CyberPal response will appear here..."/>
+                            </ScrollViewer>
+                        </Border>
+                    </Grid>
+                </Border>
 
-                <TextBox x:Name="MessageTextBox" Grid.Column="0" Background="#1E1E2E" 
-                         Foreground="White" BorderBrush="#4A90D9" BorderThickness="2"
-                         FontSize="14" Padding="12" MinHeight="45"
-                         TextWrapping="Wrap" AcceptsReturn="True"
-                         KeyDown="MessageTextBox_KeyDown"/>
+                <!-- Chat Display Area with improved scrolling -->
+                <Border Grid.Row="4" Background="#16213e" CornerRadius="8" Padding="6" Margin="0,0,0,6">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                <Button x:Name="SendButton" Grid.Column="1" Content="SEND" 
-                        Width="90" Click="SendButton_Click"/>
+                        <Border Grid.Row="0" Background="#2D2D3F" CornerRadius="6" Padding="5" Margin="0,0,0,6">
+                            <TextBlock Text="CONVERSATION HISTORY (Scroll to see more)" 
+                                       Foreground="#4A90D9" 
+                                       FontSize="10" FontWeight="Bold" HorizontalAlignment="Center"/>
+                        </Border>
 
-                <Button x:Name="VoiceButton" Grid.Column="2" Content="🎤" 
-                        Width="60" Click="VoiceButton_Click"/>
+                        <ListBox x:Name="ChatListBox" Grid.Row="1"
+                                 BorderThickness="0" Margin="0" 
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" 
+                                                HorizontalAlignment="{Binding Alignment}" 
+                                                Margin="0,3">
+                                        <Border Style="{Binding BubbleStyle}" CornerRadius="10">
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Sender}" Foreground="#888888" 
+                                                           FontSize="9" Margin="4,0,4,2"/>
+                                                <TextBlock Text="{Binding Text}" Foreground="White" 
+                                                           FontSize="11" TextWrapping="Wrap" MaxWidth="280"/>
+                                                <TextBlock Text="{Binding Timestamp}" Foreground="#666666" 
+                                                           FontSize="8" Margin="4,2,4,0" HorizontalAlignment="Right"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </Border>
+
+                <!-- Input Area -->
+                <Border Grid.Row="5" Background="#16213e" CornerRadius="8" Padding="8" Margin="0,5,0,5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="MessageTextBox" Grid.Column="0" MinHeight="35"
+                                 TextWrapping="Wrap" AcceptsReturn="True"
+                                 KeyDown="MessageTextBox_KeyDown"/>
+
+                        <Button x:Name="SendButton" Grid.Column="1" Content="SEND" 
+                                Width="60" Click="SendButton_Click"/>
+
+                        <Button x:Name="VoiceButton" Grid.Column="2" Content="MIC" 
+                                Width="50" Click="VoiceButton_Click"/>
+                    </Grid>
+                </Border>
+
+                <!-- Quick Topic Buttons -->
+                <WrapPanel Grid.Row="6" Margin="0,3,0,0" HorizontalAlignment="Center">
+                    <Button Style="{StaticResource TopicButtonStyle}" Content="Hello" 
+                            Click="QuickTopic_Click" Tag="Hello! How are you?"/>
+                    <Button Style="{StaticResource TopicButtonStyle}" Content="Help" 
+                            Click="QuickTopic_Click" Tag="help"/>
+                    <Button Style="{StaticResource TopicButtonStyle}" Content="About" 
+                            Click="QuickTopic_Click" Tag="Tell me about yourself"/>
+                    <Button Style="{StaticResource TopicButtonStyle}" Content="Tips" 
+                            Click="QuickTopic_Click" Tag="Give me some tips"/>
+                    <Button Style="{StaticResource TopicButtonStyle}" Content="Features" 
+                            Click="QuickTopic_Click" Tag="What can you do?"/>
+                    <Button Style="{StaticResource TopicButtonStyle}" Content="Clear" 
+                            Click="ClearChat_Click"/>
+                </WrapPanel>
             </Grid>
         </Border>
-
-        <!-- Quick Topic Buttons -->
-        <WrapPanel Grid.Row="4" Margin="0,15,0,0" HorizontalAlignment="Center">
-            <Button Style="{StaticResource TopicButtonStyle}" Content="Passwords" 
-                    Click="QuickTopic_Click" Tag="Tell me about passwords" Height="112" Width="127"/>
-            <Button Style="{StaticResource TopicButtonStyle}" Content="Phishing" 
-                    Click="QuickTopic_Click" Tag="Give me a phishing tip" Height="114" Width="98"/>
-            <Button Style="{StaticResource TopicButtonStyle}" Content="Malware" 
-                    Click="QuickTopic_Click" Tag="What is malware?"/>
-            <Button Style="{StaticResource TopicButtonStyle}" Content="Ransomware" 
-                    Click="QuickTopic_Click" Tag="What is ransomware?"/>
-            <Button Style="{StaticResource TopicButtonStyle}" Content="2FA" 
-                    Click="QuickTopic_Click" Tag="What is two factor authentication?"/>
-            <Button Style="{StaticResource TopicButtonStyle}" Content="Firewall" 
-                    Click="QuickTopic_Click" Tag="What is a firewall?"/>
-            <Button Style="{StaticResource TopicButtonStyle}" Content="Privacy" 
-                    Click="QuickTopic_Click" Tag="I'm interested in privacy"/>
-            <Button Style="{StaticResource TopicButtonStyle}" Content="Help" 
-                    Click="QuickTopic_Click" Tag="help"/>
-            <Button Style="{StaticResource TopicButtonStyle}" Content="Clear Chat" 
-                    Click="ClearChat_Click"/>
-        </WrapPanel>
     </Grid>
 </Window>
