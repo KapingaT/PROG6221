@@ -1,0 +1,19 @@
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\MainWindow.baml
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\MainWindow.g.cs
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\App.g.cs
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\ProgP2 chatbox_MarkupCompile.cache
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\ProgP2 chatbox.g.resources
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\ProgP2 chatbox.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\ProgP2 chatbox.AssemblyInfoInputs.cache
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\ProgP2 chatbox.AssemblyInfo.cs
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\ProgP2 chatbox.csproj.CoreCompileInputs.cache
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\bin\Debug\net10.0-windows\ProgP2 chatbox.exe
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\bin\Debug\net10.0-windows\ProgP2 chatbox.deps.json
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\bin\Debug\net10.0-windows\ProgP2 chatbox.runtimeconfig.json
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\bin\Debug\net10.0-windows\ProgP2 chatbox.dll
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\bin\Debug\net10.0-windows\ProgP2 chatbox.pdb
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\ProgP2 chatbox.dll
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\refint\ProgP2 chatbox.dll
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\ProgP2 chatbox.pdb
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\ProgP2 chatbox.genruntimeconfig.cache
+C:\Users\HP\source\repos\ProgP2 chatbox\ProgP2 chatbox\obj\Debug\net10.0-windows\ref\ProgP2 chatbox.dll
